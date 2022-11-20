@@ -1,5 +1,13 @@
-
+import React from "react"
 export default function Post(props) {
+    const [curtido, setCurtido] = React.useState("")
+    const [curtidas, setCurtidas] = React.useState(props.likes)
+    const [heart, setHeart] = React.useState("heart-outline")
+    function curtir(){
+        curtido ? setCurtido("") : setCurtido("curtido")
+        curtido ? setCurtidas(curtidas-1) : setCurtidas(curtidas+1)
+        curtido ? setHeart("heart-outline") : setHeart("heart")
+    }
     return (
         <div className="post">
         <div className="topo">
@@ -19,7 +27,7 @@ export default function Post(props) {
         <div className="fundo">
             <div className="acoes">
                 <div>
-                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-icon onClick={() => curtir()} class={curtido} name={heart}></ion-icon>
                     <ion-icon name="chatbubble-outline"></ion-icon>
                     <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
@@ -31,7 +39,7 @@ export default function Post(props) {
             <div className="curtidas">
                 <img src={props.likedimg} alt={props.liked}/>
                 <div className="texto">
-                    Curtido por <strong>{props.liked}</strong> e <strong>outras 101.523 pessoas</strong>
+                    Curtido por <strong>{props.liked}</strong> e <strong>outras {curtidas.toLocaleString('pt-BR')} pessoas</strong>
                 </div>
             </div>
         </div>
