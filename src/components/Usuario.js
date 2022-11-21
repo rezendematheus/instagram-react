@@ -17,13 +17,13 @@ export default function Usuario() {
         novoNome ? setNome(novoNome) : setNome(nomepadrao)
     }
     return (
-        <div className="usuario">
-            <img onClick={() => trocaImagem()} alt="foto do usuario" src={imagem} />
+        <div className="usuario" data-test="user">
+            <img onClick={() => trocaImagem()} alt="foto do usuario" src={imagem} data-test="profile-image"/>
             <div className="texto">
                 <strong>catanacomics</strong>
                 <span>
-                    {nome}
-                    <ion-icon onClick={() => trocaNome()} name="pencil"></ion-icon>
+                    <span data-test="name">{nome}</span>
+                    <ion-icon onClick={() => trocaNome()} name="pencil" data-test="edit-name"></ion-icon>
                 </span>
             </div>
         </div>
